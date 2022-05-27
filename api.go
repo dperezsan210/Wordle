@@ -53,9 +53,9 @@ type Related struct {
 	Urls Urls   `json:"urls"`
 }
 
-func generateWordApi(numOfLetters string) string {
+func generateWordApi(numOfLetters int) string {
 
-	path := "https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=" + numOfLetters
+	path := "https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=" + toString(numOfLetters)
 
 	response, err := http.Get(path)
 

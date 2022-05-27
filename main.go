@@ -18,7 +18,7 @@ func main() {
 	input, _ := reader.ReadString('\n')
 	input = strings.Replace(input, "\n", "", -1)
 
-	letters := input
+	letters := toInt(input)
 
 	word := generateWord(letters)
 
@@ -28,7 +28,7 @@ func main() {
 		input, _ = reader.ReadString('\n')
 		input = strings.Replace(input, "\n", "", -1)
 
-		valid, err := validate(input, toInt(letters))
+		valid, err := validate(input, letters)
 
 		if valid {
 			myWord := separateWordInLetter(input)

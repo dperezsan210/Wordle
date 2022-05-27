@@ -21,7 +21,7 @@ const (
 
 type word []letter
 
-func generateWord(letters string) word {
+func generateWord(letters int) word {
 
 	/*words := getAllWordsFromFile()
 	randomWord := takeRandomWord(words)*/
@@ -122,6 +122,10 @@ func printWordWithColor(myWord word) {
 func toInt(num string) int {
 	intVar, _ := strconv.Atoi(num)
 	return intVar
+}
+
+func toString(num int) string {
+	return strconv.Itoa(num)
 }
 
 func validate(myWord string, letters int) (bool, string) {
