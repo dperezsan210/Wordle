@@ -21,14 +21,15 @@ const (
 
 type word []letter
 
-func generateWord(letters int) word {
+func generateWord(letters int) (word, string) {
 
 	/*words := getAllWordsFromFile()
 	randomWord := takeRandomWord(words)*/
 
-	randomWord := generateWordApi(letters)
+	randomWord, definition := generateWordApi(letters)
+	shortDefinition := strings.Split(definition, ":")
 
-	return separateWordInLetter(randomWord)
+	return separateWordInLetter(randomWord), shortDefinition[0]
 }
 
 /*func getAllWordsFromFile() []string {

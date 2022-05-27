@@ -20,7 +20,7 @@ func main() {
 
 	letters := toInt(input)
 
-	word := generateWord(letters)
+	word, definition := generateWord(letters)
 
 	for win == false {
 
@@ -39,8 +39,9 @@ func main() {
 			fmt.Println(colorReset)
 
 			if win {
-				fmt.Println("Felicidades! Has acertado")
+				winMessage(input, definition)
 			}
+
 		} else {
 			fmt.Println(err)
 		}
@@ -51,4 +52,10 @@ func printWelcome() {
 	fmt.Println("Bienvenido al Wordle en Golang")
 	fmt.Println("------------------------------")
 	fmt.Print("¿Cuantas letras quieres que tenga la palabra? -> ")
+}
+
+func winMessage(input string, definition string) {
+	fmt.Println()
+	fmt.Println("Felicidades! Has acertado.")
+	fmt.Println(strings.ToUpper(input) + ": " + definition)
 }

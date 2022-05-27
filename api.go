@@ -53,7 +53,7 @@ type Related struct {
 	Urls Urls   `json:"urls"`
 }
 
-func generateWordApi(numOfLetters int) string {
+func generateWordApi(numOfLetters int) (string, string) {
 
 	path := "https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=" + toString(numOfLetters)
 
@@ -76,5 +76,5 @@ func generateWordApi(numOfLetters int) string {
 		log.Fatal(err)
 	}
 
-	return strings.ToUpper(responseObject.Body.Word)
+	return strings.ToUpper(responseObject.Body.Word), responseObject.Body.DefinitionMD
 }
