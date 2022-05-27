@@ -1,61 +1,46 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
 func main() {
 
-	colorReset := "\033[0m"
+	var myWord word
 	win := false
 
+	//Print the welcome message.
 	printWelcome()
 
-	reader := bufio.NewReader(os.Stdin)
-	input, _ := reader.ReadString('\n')
-	input = strings.Replace(input, "\n", "", -1)
+	//Ask the number of letters you want to play with.
+	numberOfLetters := requestNumber()
 
-	letters := toInt(input)
-
-	word, definition := generateWord(letters)
+	//Generate the word with its definition.
+	word, definition := generateWord(numberOfLetters)
 
 	for win == false {
 
-		fmt.Print("-> ")
-		input, _ = reader.ReadString('\n')
-		input = strings.Replace(input, "\n", "", -1)
+		//Ask the user for a word.
+		userWord := requestWord()
 
-		valid, err := validate(input, letters)
+		//Validates that the entered word contains the same characters as the word to guess.
+		valid, err := validate(userWord, numberOfLetters)
 
 		if valid {
-			myWord := separateWordInLetter(input)
 
-			myWord, win = checkWord(myWord, word)
+			//Check if it is the correct word from the position of its letters.
+			myWord, win = checkWord(userWord, word)
+
+			//Prints the existing letters in yellow and the letters that are in the correct place in green.
 			printWordWithColor(myWord)
 
-			fmt.Println(colorReset)
-
 			if win {
-				winMessage(input, definition)
+				//Print wins message
+				winMessage(userWord, definition)
 			}
 
 		} else {
 			fmt.Println(err)
 		}
 	}
-}
-
-func printWelcome() {
-	fmt.Println("Bienvenido al Wordle en Golang")
-	fmt.Println("------------------------------")
-	fmt.Print("¿Cuantas letras quieres que tenga la palabra? -> ")
-}
-
-func winMessage(input string, definition string) {
-	fmt.Println()
-	fmt.Println("Felicidades! Has acertado.")
-	fmt.Println(strings.ToUpper(input) + ": " + definition)
 }
