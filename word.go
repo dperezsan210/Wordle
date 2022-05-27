@@ -21,15 +21,12 @@ const (
 
 type word []letter
 
-func generateWord(letters int) word {
+func generateWord(letters string) word {
 
 	/*words := getAllWordsFromFile()
 	randomWord := takeRandomWord(words)*/
-	randomWord := ""
 
-	for len(randomWord) != letters {
-		randomWord = generateWordApi()
-	}
+	randomWord := generateWordApi(letters)
 
 	return separateWordInLetter(randomWord)
 }
@@ -131,7 +128,7 @@ func validate(myWord string, letters int) (bool, string) {
 	if len(myWord) > letters {
 		return false, "*Tu palabra tiene demasiadas letras*"
 	} else if len(myWord) < letters {
-		return false, "*Tu palabra solo tiene muy pocas letras*"
+		return false, "*Tu palabra tiene muy pocas letras*"
 	} else {
 		return true, ""
 	}
