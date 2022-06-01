@@ -68,6 +68,7 @@ func generateWordApi(numOfLetters int) (string, string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	response.Body.Close()
 
 	var responseObject Response
 	err = json.Unmarshal(responseData, &responseObject)
